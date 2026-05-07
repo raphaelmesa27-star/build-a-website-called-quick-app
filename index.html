@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick App | Transport Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Quick App home">
+        <span class="brand-mark">Q</span>
+        <span>Quick App</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#booking">Booking</a>
+        <a href="#driver">Driver</a>
+        <a href="#admin">Admin</a>
+      </nav>
+      <div class="session-bar">
+        <a class="care-link" href="tel:+254786476032">Care: +254786476032</a>
+        <span id="sessionName">Guest</span>
+        <button class="ghost-button" type="button" id="logoutButton">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Taxis, bodaboda riders, and courier services</p>
+          <h1>Quick App</h1>
+          <p class="hero-text">
+            A working transport platform prototype with account access, booking APIs, live request
+            management, driver tools, and admin operations in one clean dashboard.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#booking">Create booking</a>
+            <a class="secondary-action" href="#auth">Sign in</a>
+          </div>
+          <div class="trust-row" aria-label="Quick App highlights">
+            <span>Backend APIs</span>
+            <span>Role dashboards</span>
+            <span>JSON datastore</span>
+          </div>
+        </div>
+
+        <div class="app-shell" aria-label="Quick App live operations preview">
+          <div class="phone-header">
+            <span>Operations</span>
+            <span class="status-pill" id="apiStatus">Checking API</span>
+          </div>
+          <div class="map-visual">
+            <span class="road road-one"></span>
+            <span class="road road-two"></span>
+            <span class="road road-three"></span>
+            <span class="pin pickup">A</span>
+            <span class="pin dropoff">B</span>
+            <span class="vehicle taxi-icon" aria-hidden="true">Taxi</span>
+            <span class="vehicle boda-icon" aria-hidden="true">Boda</span>
+            <span class="vehicle courier-icon" aria-hidden="true">Box</span>
+          </div>
+          <div class="booking-card">
+            <div>
+              <span class="small-label">Active requests</span>
+              <strong id="activeCount">0</strong>
+            </div>
+            <button type="button" id="refreshButton">Refresh</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="auth-panel" id="auth">
+        <div class="section-heading compact">
+          <p class="eyebrow">Authentication system</p>
+          <h2>Sign in as a customer, driver, or admin.</h2>
+        </div>
+        <div class="auth-grid">
+          <form class="auth-card" id="loginForm">
+            <h3>Login</h3>
+            <label>Login as<select name="role" id="loginRole"><option value="customer">Customer</option><option value="driver">Driver</option><option value="admin">Admin</option></select></label>
+            <label>Email<input name="email" type="email" value="customer@quick.app" required /></label>
+            <label class="customer-login-field">Phone number<input name="phone" type="tel" value="+254700123456" required /></label>
+            <label class="staff-login-field">Password<input name="password" type="password" value="demo123" /></label>
+            <button class="submit-button" type="submit">Login</button>
+            <p class="hint">Customers only need email and phone. Drivers and admins use email plus password.</p>
+          </form>
+          <form class="auth-card" id="registerForm">
+            <h3>Register</h3>
+            <label>Name<input name="name" type="text" value="New Customer" required /></label>
+            <label>Email<input name="email" type="email" value="new@quick.app" required /></label>
+            <label>Phone number<input name="phone" type="tel" value="+254711222333" required /></label>
+            <label>Password<input name="password" type="password" value="demo123" /></label>
+            <input type="hidden" name="role" value="customer" />
+            <button class="secondary-action wide" type="submit">Create account</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="request-panel" id="booking">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Booking system</p>
+            <h2>Request transport or delivery.</h2>
+          </div>
+          <span class="role-pill" id="bookingRole">Login required</span>
+        </div>
+        <div class="mode-tabs" role="tablist" aria-label="Choose service">
+          <button class="mode-tab active" type="button" data-service="taxi">Taxi</button>
+          <button class="mode-tab" type="button" data-service="boda">Bodaboda</button>
+          <button class="mode-tab" type="button" data-service="courier">Courier</button>
+        </div>
+        <form class="ride-form" id="bookingForm">
+          <label>Pickup<input name="pickup" type="text" value="Westlands, Nairobi" required /></label>
+          <label>Destination<input name="destination" type="text" value="CBD, Tom Mboya Street" required /></label>
+          <label>Time<select name="time"><option>Now</option><option>In 30 minutes</option><option>Schedule for later</option></select></label>
+          <div class="estimate" aria-live="polite">
+            <span id="estimateTitle">Taxi cash fare</span>
+            <strong id="estimatePrice">KES 680</strong>
+            <small id="estimateMeta">Enter destination, then approve cash fare</small>
+          </div>
+          <button class="submit-button" type="submit" id="bookingSubmit">Get cash fare</button>
+        </form>
+      </section>
+
+      <section class="workspace">
+        <div class="dashboard-card" id="customer">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Customer dashboard</p>
+              <h2>My bookings</h2>
+            </div>
+            <button class="ghost-button" type="button" id="customerRefresh">Reload</button>
+          </div>
+          <div class="table-list" id="customerBookings"></div>
+        </div>
+
+        <div class="dashboard-card" id="driver">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Driver dashboard</p>
+              <h2>Available and assigned jobs</h2>
+            </div>
+            <button class="ghost-button" type="button" id="driverRefresh">Reload</button>
+          </div>
+          <div class="driver-onboarding">
+            <form class="auth-card" id="driverRegisterForm">
+              <h3>Driver registration</h3>
+              <label>Full name<input name="name" type="text" value="New Rider" required /></label>
+              <label>ID number<input name="idNumber" type="text" value="12345678" required /></label>
+              <label>Email<input name="email" type="email" value="rider@quick.app" required /></label>
+              <label>Phone number<input name="phone" type="tel" value="+254722111222" required /></label>
+              <label>Vehicle type<select name="vehicle"><option value="Bodaboda">Bodaboda</option><option value="Taxi">Taxi</option><option value="Courier">Courier</option></select></label>
+              <label>Number plate<input name="numberPlate" type="text" value="KDA 123B" required /></label>
+              <label>Vehicle color<input name="vehicleColor" type="text" value="Green" required /></label>
+              <label>Current area<input name="location" type="text" value="Westlands" required /></label>
+              <label>Passport photo<input name="passportPhoto" type="file" accept="image/*" required /></label>
+              <label>Create password<input name="password" type="password" value="demo123" required /></label>
+              <button class="secondary-action wide" type="submit">Submit for approval</button>
+              <p class="hint">After admin approval, this account can log in and accept jobs.</p>
+            </form>
+            <form class="auth-card" id="driverLoginForm">
+              <h3>Driver login</h3>
+              <label>Email<input name="email" type="email" value="driver@quick.app" required /></label>
+              <label>Password<input name="password" type="password" value="demo123" required /></label>
+              <input type="hidden" name="role" value="driver" />
+              <button class="submit-button" type="submit">Login as driver</button>
+              <p class="hint">Only approved drivers can access available requests.</p>
+            </form>
+          </div>
+          <div class="table-list" id="driverJobs"></div>
+        </div>
+
+        <div class="dashboard-card admin-card" id="admin">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Admin panel</p>
+              <h2>Platform control center</h2>
+            </div>
+            <button class="ghost-button" type="button" id="adminRefresh">Reload</button>
+          </div>
+          <div class="metric-grid" id="adminMetrics"></div>
+          <h3 class="subheading">Driver approvals</h3>
+          <div class="table-list admin-section" id="adminDrivers"></div>
+          <h3 class="subheading">Bookings</h3>
+          <div class="table-list" id="adminBookings"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <span>Quick App</span>
+      <a href="tel:+254786476032">Customer care: +254786476032</a>
+      <span>API routes: /api/auth, /api/bookings, /api/admin</span>
+      <span>Demo only, not production security</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "quick-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quick App transport platform prototype with backend APIs.",
+  "scripts": {
+    "start": "node server.js",
+    "start:ps": "powershell -NoProfile -ExecutionPolicy Bypass -File server.ps1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,114 @@
+﻿{
+    "users":  [
+                  {
+                      "id":  "u-100",
+                      "name":  "Customer Demo",
+                      "email":  "customer@quick.app",
+                      "password":  "",
+                      "role":  "customer",
+                      "phone":  "+254700123456"
+                  },
+                  {
+                      "id":  "u-200",
+                      "name":  "Amina Rider",
+                      "email":  "driver@quick.app",
+                      "password":  "demo123",
+                      "role":  "driver",
+                      "vehicle":  "Bodaboda",
+                      "phone":  "+254722456789",
+                      "approved":  true,
+                      "numberPlate":  "KDA 123B",
+                      "vehicleColor":  "Green",
+                      "passportPhoto":  "",
+                      "location":  {
+                                       "lat":  -1.2648,
+                                       "lng":  36.8024,
+                                       "label":  "Westlands"
+                                   },
+                      "idNumber":  "12345678"
+                  },
+                  {
+                      "id":  "u-300",
+                      "name":  "Admin Demo",
+                      "email":  "admin@quick.app",
+                      "password":  "demo123",
+                      "role":  "admin"
+                  },
+                  {
+                      "id":  "u-301",
+                      "name":  "Raphael Mesa",
+                      "email":  "raphaelmesa27@gmail.com",
+                      "password":  "demo123",
+                      "role":  "admin"
+                  }
+              ],
+    "bookings":  [
+                     {
+                         "id":  "BK-1001",
+                         "customerId":  "u-100",
+                         "customerName":  "Customer Demo",
+                         "driverId":  "u-200",
+                         "driverName":  "Amina Rider",
+                         "service":  "boda",
+                         "pickup":  "Kilimani",
+                         "destination":  "Upper Hill",
+                         "time":  "Now",
+                         "price":  210,
+                         "status":  "accepted",
+                         "createdAt":  "2026-05-07T11:19:59.3823293+03:00",
+                         "customerEmail":  "customer@quick.app",
+                         "customerPhone":  "+254700123456",
+                         "driverPhone":  "+254722456789",
+                         "driverVehicleColor":  "Green",
+                         "driverNumberPlate":  "KDA 123B",
+                         "driverPassportPhoto":  "",
+                         "driverVehicle":  "Bodaboda",
+                         "pickupLocation":  {
+                                                "lat":  -1.2921,
+                                                "lng":  36.7856,
+                                                "label":  "Kilimani"
+                                            },
+                         "driverLocation":  {
+                                                "lat":  -1.2648,
+                                                "lng":  36.8024,
+                                                "label":  "Westlands"
+                                            },
+                         "locationUpdatedAt":  "2026-05-07T12:14:40.1560457+03:00",
+                         "paymentMethod":  "cash",
+                         "fareApproved":  true,
+                         "dispatchStatus":  "driver-assigned"
+                     },
+                     {
+                         "id":  "BK-1002",
+                         "customerId":  "u-100",
+                         "customerName":  "Customer Demo",
+                         "driverId":  null,
+                         "driverName":  "",
+                         "service":  "courier",
+                         "pickup":  "Westlands",
+                         "destination":  "Industrial Area",
+                         "time":  "In 30 minutes",
+                         "price":  340,
+                         "status":  "pending",
+                         "createdAt":  "2026-05-07T11:19:59.3918463+03:00",
+                         "customerEmail":  "customer@quick.app",
+                         "customerPhone":  "+254700123456",
+                         "driverPhone":  "",
+                         "driverVehicle":  "",
+                         "driverNumberPlate":  "",
+                         "driverVehicleColor":  "",
+                         "driverPassportPhoto":  "",
+                         "pickupLocation":  {
+                                                "lat":  -1.2648,
+                                                "lng":  36.8024,
+                                                "label":  "Westlands"
+                                            },
+                         "paymentMethod":  "cash",
+                         "fareApproved":  true,
+                         "dispatchStatus":  "searching-nearest-rider"
+                     }
+                 ],
+    "sessions":  {
+
+                 }
+}
